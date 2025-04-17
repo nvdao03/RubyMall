@@ -144,6 +144,10 @@ button {
   outline: none;
 }
 
+body {
+  background-color: #f2f2f2;
+}
+
 /* Đặt thanh cuộn về mặc định gần giống của Chrome sáng */
 ::-webkit-scrollbar {
   width: 8px;

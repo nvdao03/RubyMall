@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className=" py-[20px] fixed w-full top-0 left-0 z-[10]">
+    <header className=" py-[20px] fixed w-full top-0 left-0 z-[10] bg-white">
       <div className="custom-container">
         <nav className="flex items-center">
           {/* Toogle */}
