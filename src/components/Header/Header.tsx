@@ -1,6 +1,27 @@
-import Link from "next/link";
+"use client";
 
-export default function Header() {
+import LoginForm from "@/components/LoginForm/LoginForm";
+import RegisterForm from "@/components/RegisterForm/RegisterForm";
+import Link from "next/link";
+import { useState } from "react";
+
+function Header() {
+  const [isOpenRegister, setIsOpenRegister] = useState<boolean>(false);
+  const [isOpenLogin, setIsOpenLogin] = useState<boolean>(false);
+
+  const handleOpenRegister = () => {
+    setIsOpenRegister(!isOpenRegister);
+  };
+
+  const handleOpenLogin = () => {
+    setIsOpenLogin(!isOpenLogin);
+  };
+
+  const handleCloseForm = () => {
+    setIsOpenRegister(false);
+    setIsOpenLogin(false);
+  };
+
   return (
     <header className=" py-[20px] fixed w-full top-0 left-0 z-[10] bg-white">
       <div className="custom-container">
@@ -70,15 +91,25 @@ export default function Header() {
           </div>
           {/* Action */}
           <div className="items-center ml-6 gap-x-3 hidden md:flex">
-            <button className="px-[25px] py-[10px] border border-solid rounded-[999px] border-primary text-primary">
+            <button
+              onClick={handleOpenRegister}
+              className="px-[25px] py-[10px] border border-solid rounded-[999px] border-primary text-primary"
+            >
               Đăng ký
             </button>
-            <button className="px-[25px] py-[10px] border text-white border-solid rounded-[999px] bg-primary border-primary hover:opacity-80 transition-all duration-200 ease-in-out">
+            {isOpenRegister && <RegisterForm handleCloseForm={handleCloseForm} />}
+            <button
+              onClick={handleOpenLogin}
+              className="px-[25px] py-[10px] border text-white border-solid rounded-[999px] bg-primary border-primary hover:opacity-80 transition-all duration-200 ease-in-out"
+            >
               Đăng nhập
             </button>
+            {isOpenLogin && <LoginForm handleCloseForm={handleCloseForm} />}
           </div>
         </nav>
       </div>
     </header>
   );
 }
+
+export default Header;
